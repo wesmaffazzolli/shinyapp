@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n################################################\n### VETORES \n################################################\n\n###############\n### Vetores ###\n###############\n\n# 'c' significa 'combinar'\nc(4,6,2)\nc('a', 'b', 'c')\nc(1, TRUE, \"arvore\")\n\n############################\n### Sequencia de vetores ###\n############################\n\n1:5\nseq(1,5)\nseq(1,5,0.5)\n5:1\n\n########################\n### Acesso a vetores ###\n########################\n\n# crie um vetor qualquer\nvetorA <- c('A','B','C')\n\n# exemplos de modos de acesso\nvetorA[3]\nvetorA[1]\nvetorA[1:2]\n\n#atualizacao\nvetorA[1]<-\"A1\"\nvetorA[4]<-\"D\"\nvetorA\n\n#######################\n### Nome de vetores ###\n#######################\n\n#nomear\nnames(vetorA)<-c(\"pedro\",\"paulo\",\"ana\",\"maria\")\nvetorA\n\n#acesso pelo nome\nvetorA[\"ana\"]\n\n#########################\n###  Plotar um vetor  ###\n#########################\n\nnotas<-c(7,9,6,10)\nbarplot(notas)\nnames(notas)<-c(\"pedro\",\"paulo\",\"ana\",\"maria\")\nbarplot(notas)\n\n#############################\n### Operacoes com vetores ###\n#############################\n\na <- c(1, 2, 3)\na <- a + 10\na / 2\na * 2\na ^ 2\n\nb <- c(-3, 0, 3)\na < b\na == b\na + b\n\nsum(a)\n\n############################\n### Grafico de dispersao ###\n############################\n\nx<-seq(1, 20, 0.1)\ny<-sin(x)\nplot(x,y)\n\n##################\n### Valores NA ###\n##################\n\na <- c(1, 3, NA, 7, 9)\nsum(a)\nsum(a, na.rm=TRUE)\n\n\n\n\n\n\n\n\n\n\n",
+    "created" : 1508349021823.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4278190387",
+    "id" : "5B0B9696",
+    "lastKnownWriteTime" : 1508350925,
+    "last_content_update" : 1508350925356,
+    "path" : "C:/Users/Wesley/Desktop/2.vetores.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

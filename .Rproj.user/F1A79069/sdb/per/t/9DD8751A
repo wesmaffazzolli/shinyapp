@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n################################################\n### CONTROLE DE FLUXO - EXEMPLOS BASICOS\n################################################\n\n########\n### FOR\n########\nmt<-matrix(rnorm(10000),ncol = 10, nrow=1000)\ncolnames(mt)<-sample(letters[1:10])\nfor (i in 1:10){\n  print(mean(mt[,i]))\n}\n\n\n\n########\n### IF\n########\nfor (i in 1:10){\n  if(i!=5){\n    print(\"Primeira metade\") \n  } else { \n    print(\"Segunda metade\")  \n  }\n}\n\n##########\n### While\n##########\nz <- 0\nwhile(z < 50){ \n  z <- z + 10\n  print(z)  \n}\n\n\n",
+    "created" : 1508350156129.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "55336309",
+    "id" : "9DD8751A",
+    "lastKnownWriteTime" : 1508350125,
+    "last_content_update" : 1508350125,
+    "path" : "C:/Users/Wesley/Desktop/7.programacao.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

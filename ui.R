@@ -1,0 +1,65 @@
+
+# This is the user-interface definition of a Shiny web application.
+# You can find out more about building applications with Shiny here:
+#
+# http://shiny.rstudio.com
+#
+
+# carrega dados de entrada
+dmat=read.table("Titanic.csv",sep=",",header=TRUE)
+idx<-sapply(dmat,is.numeric)
+dmatNum<-dmat[,idx]
+dmatCor<-cor(dmatNum)
+exemplos<-colnames(dmatCor)
+exemplos
+#----------------------------------------------------
+
+library(shiny)
+library(shinythemes)
+
+shinyUI(fluidPage(
+  theme = shinytheme("superhero"),
+  
+  navbarPage(
+    # theme = "cerulean",  # <--- To use a theme, uncomment this
+    "Titanic Survivors",
+    tabPanel("ShinyApp",
+             sidebarPanel(
+               selectInput("tp", "Tipo de Plot:",
+                           c("Correlação" = "c",
+                             "Heatmap" = "h"
+                             )),
+               selectInput("var", "Variável de Interesse:", choices=colnames(dmatCor))
+               # fileInput("file", "File input:"),
+               # textInput("txt", "Text input:", "general"),
+               # sliderInput("slider", "Slider input:", 1, 100, 30),
+               # tags$h5("Deafult actionButton:"),
+               # actionButton("action", "Search"),
+               # tags$h5("actionButton with CSS class:"),
+               # actionButton("action2", "Action button", class = "btn-primary")
+             ),
+             mainPanel(
+               tabsetPanel(
+                 tabPanel("Plotagem",
+                          plotOutput("barplot")  
+                          # h4("Plot aqui")
+                          # tableOutput("table"),
+                          # h4("Verbatim text output"),
+                          # verbatimTextOutput("txtout"),
+                          # h1("Header 1"),
+                          # h2("Header 2"),
+                          # h3("Header 3"),
+                          # h4("Header 4"),
+                          # h5("Header 5")
+                 )#,
+                 # tabPanel("Tab 2", "This panel is intentionally left blank")
+                 # tabPanel("Tab 3", "This panel is intentionally left blank")
+               )
+             )
+    )#,
+    #tabPanel("Navbar 2", "This panel is intentionally left blank"),
+    #tabPanel("Navbar 3", "This panel is intentionally left blank")
+  )
+)
+)
+

@@ -1,0 +1,9 @@
+{
+    "path" : "~/shinyapp",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

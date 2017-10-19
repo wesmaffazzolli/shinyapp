@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\n# carrega dados de entrada\ndmat=read.table(\"Titanic.csv\",sep=\",\",header=TRUE)\nidx<-sapply(dmat,is.numeric)\ndmatNum<-dmat[,idx]\ndmatCor<-cor(dmatNum)\nexemplos<-colnames(dmatCor)\nexemplos\n#----------------------------------------------------\n\nlibrary(shiny)\nlibrary(shinythemes)\n\nshinyUI(fluidPage(\n  theme = shinytheme(\"superhero\"),\n  \n  navbarPage(\n    # theme = \"cerulean\",  # <--- To use a theme, uncomment this\n    \"Titanic Survivors\",\n    tabPanel(\"ShinyApp\",\n             sidebarPanel(\n               selectInput(\"tp\", \"Tipo de Plot:\",\n                           c(\"Correlação\" = \"c\",\n                             \"Heatmap\" = \"h\"\n                             )),\n               selectInput(\"var\", \"Variável de Interesse:\", choices=colnames(dmatCor))\n               # fileInput(\"file\", \"File input:\"),\n               # textInput(\"txt\", \"Text input:\", \"general\"),\n               # sliderInput(\"slider\", \"Slider input:\", 1, 100, 30),\n               # tags$h5(\"Deafult actionButton:\"),\n               # actionButton(\"action\", \"Search\"),\n               # tags$h5(\"actionButton with CSS class:\"),\n               # actionButton(\"action2\", \"Action button\", class = \"btn-primary\")\n             ),\n             mainPanel(\n               tabsetPanel(\n                 tabPanel(\"Plotagem\",\n                          plotOutput(\"barplot\")  \n                          # h4(\"Plot aqui\")\n                          # tableOutput(\"table\"),\n                          # h4(\"Verbatim text output\"),\n                          # verbatimTextOutput(\"txtout\"),\n                          # h1(\"Header 1\"),\n                          # h2(\"Header 2\"),\n                          # h3(\"Header 3\"),\n                          # h4(\"Header 4\"),\n                          # h5(\"Header 5\")\n                 )#,\n                 # tabPanel(\"Tab 2\", \"This panel is intentionally left blank\")\n                 # tabPanel(\"Tab 3\", \"This panel is intentionally left blank\")\n               )\n             )\n    )#,\n    #tabPanel(\"Navbar 2\", \"This panel is intentionally left blank\"),\n    #tabPanel(\"Navbar 3\", \"This panel is intentionally left blank\")\n  )\n)\n)\n\n",
+    "created" : 1507336700158.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3027939658",
+    "id" : "8B970FD2",
+    "lastKnownWriteTime" : 1508353789,
+    "last_content_update" : 1508353789529,
+    "path" : "~/shinyapp/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
