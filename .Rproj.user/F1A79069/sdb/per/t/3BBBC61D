@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\n# library(shiny)\n# library(datasets)\n\n#----------------------------------------------------\n# carrega dados de entrada\ndmat=read.table(\"Titanic.csv\",sep=\",\",header=TRUE)\nidx<-sapply(dmat,is.numeric)\ndmatNum<-dmat[,idx]\ndmatCor<-cor(dmatNum)\n#----------------------------------------------------\n\nfunction(input, output) {\n\n  # Fill in the spot we created for a plot\n  output$barplot <- renderPlot({\n    \n    #----------------------------------------------------\n    # seleciona variavel (via input$var)\n    varInteresse <- \"SexCode\"\n    varInteresse <- input$var\n    temp <- dmatCor[,varInteresse]\n    idx <- which(names(temp)==varInteresse)\n    temp <- temp[-idx]\n    temp <- sort(temp)\n    #----------------------------------------------------\n    # Render a barplot\n    barplot(temp, las=3, ylab = \"Correlacao (R)\")\n    mtext(varInteresse, side = 3)\n    #----------------------------------------------------\n    \n})\n  \n}\n",
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\n# library(shiny)\n# library(datasets)\n\n#----------------------------------------------------\n# carrega dados de entrada\ndmat=read.table(\"Titanic.csv\",sep=\",\",header=TRUE)\nidx<-sapply(dmat,is.numeric)\ndmatNum<-dmat[,idx]\ndmatCor<-cor(dmatNum)\n#----------------------------------------------------\n\nfunction(input, output) {\n\n  # Fill in the spot we created for a plot\n  output$barplot <- renderPlot({\n    \n    #----------------------------------------------------\n    # seleciona variavel (via input$var)\n    varInteresse <- \"SexCode\"\n    varInteresse <- input$var\n    temp <- dmatCor[,varInteresse]\n    idx <- which(names(temp)==varInteresse)\n    temp <- temp[-idx]\n    temp <- sort(temp)\n    \n    #----------------------------------------------------\n    # Render a barplot (Correlation)\n    barplot(temp, las=3, ylab = \"Correlacao (R)\")\n    mtext(varInteresse, side = 3)\n    #----------------------------------------------------\n    \n    #----------------------------------------------------\n    # Render a barplot (Correlation)\n    \n})\n  \n}\n",
     "created" : 1508344154436.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2403515084",
+    "hash" : "679398715",
     "id" : "3BBBC61D",
-    "lastKnownWriteTime" : 1508353064,
-    "last_content_update" : 1508353064556,
+    "lastKnownWriteTime" : 1508456578,
+    "last_content_update" : 1508456578160,
     "path" : "~/shinyapp/server.R",
     "project_path" : "server.R",
     "properties" : {

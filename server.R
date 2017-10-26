@@ -29,11 +29,15 @@ function(input, output) {
     idx <- which(names(temp)==varInteresse)
     temp <- temp[-idx]
     temp <- sort(temp)
+    
     #----------------------------------------------------
-    # Render a barplot
+    # Render a barplot (Correlation)
     barplot(temp, las=3, ylab = "Correlacao (R)")
     mtext(varInteresse, side = 3)
     #----------------------------------------------------
+    
+    #----------------------------------------------------
+    # Render a barplot (Correlation)
     
 })
   

@@ -25,6 +25,7 @@ shinyUI(fluidPage(
     "Titanic Survivors",
     tabPanel("ShinyApp",
              sidebarPanel(
+               # Colocou menu item
                selectInput("tp", "Tipo de Plot:",
                            c("Correlação" = "c",
                              "Heatmap" = "h"

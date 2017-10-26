@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# http://archive.ics.uci.edu/ml/datasets/Student+Performance\n\n################################################\n###  Carrega dados\n################################################\ndmat=read.table(\"d:/tads/tbd/projeto/chicagoc.csv\",sep=\";\",header=TRUE)\ndim(dmat)\n##################################################\n### Verifica correlacao entre atributos numericos\n##################################################\nidx<-sapply(dmat,is.numeric)\ndmatNum<-dmat[,idx]\ndmatCor<-cor(dmatNum)\n\n##################################################\n### Mathematics\n##################################################\nlibrary(\"RColorBrewer\")\ncolor.code <- brewer.pal(9,\"RdBu\")\nbks<-seq(-1, 1, length.out=10)\nheatmap(dmatCor, col=rev(color.code), scale=\"none\", \n        xlab = \"Variaveis CSI\", \n        ylab = \"Variaveis CSI\",\n        breaks=bks, cexRow = 0.6, cexCol = 0.6)\n\n##################################################\n### Adiciona uma parametro para selecao\n##################################################\n\n#----------------------------------------------\n#### AQUI SELECIONA UMA VARIAVEL DE INTERESSE #####\nvarInteresse <- \"studytime\"\n#----------------------------------------------\n\n#--- pega todas as correlacoes com a 'varInteresse'\ntemp <- dmatCor[,varInteresse]\n\n#--- apenas a autocorrelacao\nidx <- which(names(temp)==varInteresse)\ntemp <- temp[-idx]\n\n#--- ordena variaveis pelo valor de correlacao\ntemp <- sort(temp)\n\n#--- gera um simples barplot\nbarplot(temp, las=3, ylab = \"Correlacao (R)\")\nmtext(varInteresse, side = 3)\n\n\n\n\n\n\n\n\n\n\n\n",
+    "created" : 1508455429718.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3935451471",
+    "id" : "511AF710",
+    "lastKnownWriteTime" : 1508455412,
+    "last_content_update" : 1508455412,
+    "path" : "C:/Users/Wesley/Desktop/script_CSI.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
