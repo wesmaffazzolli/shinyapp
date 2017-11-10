@@ -5,8 +5,9 @@
 # http://shiny.rstudio.com
 #
 
-# library(shiny)
-# library(datasets)
+library(shiny)
+library(datasets)
+library("RColorBrewer") 
 
 #----------------------------------------------------
 # carrega dados de entrada
@@ -16,7 +17,7 @@ dmatNum<-dmat[,idx]
 dmatCor<-cor(dmatNum)
 #----------------------------------------------------
 
-function(input, output) {
+function(input, output, session) {
 
   # Fill in the spot we created for a plot
   output$barplot <- renderPlot({
@@ -40,5 +41,27 @@ function(input, output) {
     # Render a barplot (Correlation)
     
 })
+  output$heatplot <- renderPlot({  
+    color.code <- brewer.pal(9,"RdBu")
+    bks<-seq(-1, 1, length.out=10)
+    heatmap(dmatCor, col=rev(color.code), scale="none", 
+            xlab = "Variaveis Titanic", 
+            ylab = "Variaveis Titanic",
+            breaks=bks, cexRow = 0.6, cexCol = 0.6)
+  }) 
+  output$dmat <- DT::renderDataTable({
+    df <- dmat 
+      # filter(
+        #is.null(input$ano) | Ano %in% input$ano,
+        #is.null(input$vinculo) | Vinculo %in% input$vinculo,
+        #is.null(input$uf) | UF %in% input$uf
+        #is.null(input$vinculo) | Vinculo %in% input$vinculo
+      # ) %>%
+      # mutate(Action = paste('<a class="go-map" href="" data-lat="', Lat, '" data-long="', Long, '"><i class="fa fa-crosshairs"></i></a>', sep=""))
+     action <- DT::dataTableAjax(session, df)
+    
+    DT::datatable(df, options = list(ajax = list(url = action)), escape = FALSE)
+  })
+  
   
 }

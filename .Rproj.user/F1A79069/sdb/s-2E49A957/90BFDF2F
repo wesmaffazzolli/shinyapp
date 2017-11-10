@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\n# carrega dados de entrada\ndmat=read.table(\"Titanic.csv\",sep=\",\",header=TRUE)\nidx<-sapply(dmat,is.numeric)\ndmatNum<-dmat[,idx]\ndmatCor<-cor(dmatNum)\nexemplos<-colnames(dmatCor)\nexemplos\n#----------------------------------------------------\n\nlibrary(shiny)\nlibrary(shinythemes)\nlibrary(RColorBrewer)\n\nshinyUI(fluidPage(\n  theme = shinytheme(\"superhero\"),\n  \n  navbarPage(\n    # theme = \"cerulean\",  # <--- To use a theme, uncomment this\n    \"Titanic Survivors\",\n    tabPanel(\"ShinyApp\",\n             sidebarPanel(\n               # Colocou menu item\n               selectInput(\"tp\", \"Tipo de Plot:\",\n                           c(\"Correlacao\" = \"c\",\n                             \"Heatmap\" = \"h\"\n                             )),\n               \n               conditionalPanel(\"input.tp == 'c'\",\n                                # Only prompt for threshold when coloring or sizing by superzip\n                        selectInput(\"var\", \"Variavel de Interesse:\", choices=colnames(dmatCor))\n               )\n               \n               # fileInput(\"file\", \"File input:\"),\n               # textInput(\"txt\", \"Text input:\", \"general\"),\n               # sliderInput(\"slider\", \"Slider input:\", 1, 100, 30),\n               # tags$h5(\"Deafult actionButton:\"),\n               # actionButton(\"action\", \"Search\"),\n               # tags$h5(\"actionButton with CSS class:\"),\n               # actionButton(\"action2\", \"Action button\", class = \"btn-primary\")\n             ),\n             \n             mainPanel(\n               tabsetPanel(\n                 conditionalPanel(condition = \"input.tp == 'c'\",\n                          plotOutput(\"barplot\")),\n                 conditionalPanel(condition = \"input.tp == 'h'\",\n                          plotOutput(\"heatplot\"))\n               )\n             )\n               \n      )\n    ) \n  )\n)\n\n\n",
+    "created" : 1510270768008.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "657716009",
+    "id" : "90BFDF2F",
+    "lastKnownWriteTime" : 1510270686,
+    "last_content_update" : 1510270686,
+    "path" : "C:/Users/Wesley/Desktop/ui.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

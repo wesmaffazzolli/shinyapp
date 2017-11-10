@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(datasets)\nlibrary(\"RColorBrewer\") \n\n#----------------------------------------------------\n# carrega dados de entrada\ndmat=read.table(\"Titanic.csv\",sep=\",\",header=TRUE)\nidx<-sapply(dmat,is.numeric)\ndmatNum<-dmat[,idx]\ndmatCor<-cor(dmatNum)\n#----------------------------------------------------\n\nfunction(input, output, session) {\n\n  # Fill in the spot we created for a plot\n  output$barplot <- renderPlot({\n    \n    #----------------------------------------------------\n    # seleciona variavel (via input$var)\n    varInteresse <- \"SexCode\"\n    varInteresse <- input$var\n    temp <- dmatCor[,varInteresse]\n    idx <- which(names(temp)==varInteresse)\n    temp <- temp[-idx]\n    temp <- sort(temp)\n    \n    #----------------------------------------------------\n    # Render a barplot (Correlation)\n    barplot(temp, las=3, ylab = \"Correlacao (R)\")\n    mtext(varInteresse, side = 3)\n    #----------------------------------------------------\n    \n    #----------------------------------------------------\n    # Render a barplot (Correlation)\n    \n})\n  output$heatplot <- renderPlot({  \n    color.code <- brewer.pal(9,\"RdBu\")\n    bks<-seq(-1, 1, length.out=10)\n    heatmap(dmatCor, col=rev(color.code), scale=\"none\", \n            xlab = \"Variaveis Titanic\", \n            ylab = \"Variaveis Titanic\",\n            breaks=bks, cexRow = 0.6, cexCol = 0.6)\n  }) \n  output$dmat <- DT::renderDataTable({\n    df <- dmat \n      # filter(\n        #is.null(input$ano) | Ano %in% input$ano,\n        #is.null(input$vinculo) | Vinculo %in% input$vinculo,\n        #is.null(input$uf) | UF %in% input$uf\n        #is.null(input$vinculo) | Vinculo %in% input$vinculo\n      # ) %>%\n      # mutate(Action = paste('<a class=\"go-map\" href=\"\" data-lat=\"', Lat, '\" data-long=\"', Long, '\"><i class=\"fa fa-crosshairs\"></i></a>', sep=\"\"))\n     action <- DT::dataTableAjax(session, df)\n    \n    DT::datatable(df, options = list(ajax = list(url = action)), escape = FALSE)\n  })\n  \n  \n}\n",
+    "created" : 1508344154436.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "498254997",
+    "id" : "3BBBC61D",
+    "lastKnownWriteTime" : 1510273716,
+    "last_content_update" : 1510273716430,
+    "path" : "~/shinyapp/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
